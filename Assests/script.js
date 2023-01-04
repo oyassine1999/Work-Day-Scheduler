@@ -21,3 +21,16 @@ $(function () {
       this.classList.add("present");
     }
   });
+    
+  // Get any user input saved in localStorage and set textarea values accordingly
+  $('.time-block').each(function () {
+    const timeBlockId = $(this).attr('id');
+    const userInput = localStorage.getItem(timeBlockId);
+    if (userInput) {
+      $(this).find('.description').val(userInput);
+    }
+  });
+
+  // Display current date in header
+  $('#currentDay').text(dayjs().format('dddd, MMMM D'));
+});

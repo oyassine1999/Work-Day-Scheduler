@@ -8,3 +8,16 @@ $(function () {
     // Save user input in local storage
     localStorage.setItem(timeBlockId, userInput);
   });
+    // Apply past, present, or future class to each time-block based on current hour
+  $('.time-block').each(function () {
+    const timeBlockId = $(this).attr('id');
+    const hour = parseInt(timeBlockId.split('-')[1]);
+    const currentHour = dayjs().hour();
+    if (hour < currentHour) {
+      this.classList.add("past");
+    } else if (hour > currentHour) {
+      this.classList.add("future");
+    } else {
+      this.classList.add("present");
+    }
+  });
